@@ -58,19 +58,17 @@ public class AddTeachers extends javax.swing.JFrame {
     }
     
    private void delTea() {
-        Statement cs = null;
         String id = jTextField1.getText();
         try {
-            cs = Main.getMysql();
-            cs.execute("delete from teachers where id ='"+id+"';");
+            stt.execute("delete from teachers where id ='"+id+"';");
         } catch(Exception e) {
             int n = JOptionPane.showConfirmDialog(new JFrame(),"This teacher has association with some subject.\nAre you sure to delete?","Caution",JOptionPane.YES_NO_OPTION);
             if(n == JOptionPane.OK_OPTION) {
                 try {
-                    cs.execute("delete from sub_tea where teaid ='"+id+"';");
-                    cs.execute("delete from teachers where id ='"+id+"';");
+                    stt.execute("delete from sub_tea where teaid ='"+id+"';");
+                    stt.execute("delete from teachers where id ='"+id+"';");
                 } catch (SQLException ex) {
-                    Logger.getLogger(Teachers.class.getName()).log(Level.SEVERE, null, ex);
+                    e.printStackTrace();
                 }
             }
             System.err.println(e);
