@@ -9,10 +9,13 @@ import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -53,6 +56,27 @@ public class AddTeachers extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    
+   private void delTea() {
+        Statement cs = null;
+        String id = jTextField1.getText();
+        try {
+            cs = Main.getMysql();
+            cs.execute("delete from teachers where id ='"+id+"';");
+        } catch(Exception e) {
+            int n = JOptionPane.showConfirmDialog(new JFrame(),"This teacher has association with some subject.\nAre you sure to delete?","Caution",JOptionPane.YES_NO_OPTION);
+            if(n == JOptionPane.OK_OPTION) {
+                try {
+                    cs.execute("delete from sub_tea where teaid ='"+id+"';");
+                    cs.execute("delete from teachers where id ='"+id+"';");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Teachers.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            System.err.println(e);
+        }
+    }
+   
     public void actionPerformed(ActionEvent e) {
      if("back".equals(e.getActionCommand())) {
             this.setVisible(false);
