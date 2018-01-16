@@ -77,7 +77,7 @@ public class AddTeachers extends javax.swing.JFrame {
    
     private void insTea() {
         try {
-            cs.execute("insert into teachers values('"+jTextField1.getText()+"','"+jTextField2.getText()+"');");
+            stt.execute("insert into teachers values('"+jTextField1.getText()+"','"+jTextField2.getText()+"');");
         } catch(Exception e) {
              System.err.println(e);
         }
@@ -98,7 +98,8 @@ public class AddTeachers extends javax.swing.JFrame {
                     delTea();
                     insTea();
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception e) {
                 e.printStackTrace();
             }
             this.showList();
