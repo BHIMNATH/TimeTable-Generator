@@ -114,8 +114,8 @@ public class AddTeachers extends javax.swing.JFrame {
                     insTea();
                 }
             }
-            catch (SQLException e) {
-                e.printStackTrace();
+            catch (Exception ex) {
+                ex.printStackTrace();
             }
             this.showList();
         }   
