@@ -57,6 +57,21 @@ public class AddTeachers extends javax.swing.JFrame {
         }
     }
     
+    private void showList() {
+        try {
+            Statement cs = Main.getMysql();
+            DefaultListModel def = new DefaultListModel();
+            cs.execute("select id from teachers");
+            ResultSet rst = cs.getResultSet();
+            while(rst.next())
+                def.addElement(rst.getString(1));
+            jList1.setModel(def);
+            jList1.setEnabled(true);
+        } catch(Exception e) {
+             System.err.println(e);
+        }
+    }
+    
    private void delTea() {
         String id = jTextField1.getText();
         try {
@@ -99,7 +114,7 @@ public class AddTeachers extends javax.swing.JFrame {
                     insTea();
                 }
             }
-            catch (Exception e) {
+            catch (SQLException e) {
                 e.printStackTrace();
             }
             this.showList();
