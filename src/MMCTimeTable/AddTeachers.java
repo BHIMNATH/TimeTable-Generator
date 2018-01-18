@@ -16,6 +16,8 @@ import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -56,6 +58,19 @@ public class AddTeachers extends javax.swing.JFrame {
         {
             e.printStackTrace();
         }
+        jList1.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent evt) {
+                try{
+                    stt.execute("select * from teachers where id ='"+jList1.getSelectedValue().toString()+"';");
+                    ResultSet rst = stt.getResultSet();
+                    rst.next();
+                    jTextField1.setText(rst.getString(1));
+                    jTextField2.setText(rst.getString(2));
+                } catch(Exception e) {
+                    System.err.println(e);
+                }
+            }
+        });
     }
     
     private void showList() {
