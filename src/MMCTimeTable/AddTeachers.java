@@ -60,8 +60,9 @@ public class AddTeachers extends javax.swing.JFrame {
     
     private void showList() {
         try {
+             def = new DefaultListModel();
             stt.execute("select id from teachers");
-            rst = stt.getResultSet();
+            ResultSet rst = stt.getResultSet();
             while(rst.next())
                 def.addElement(rst.getString(1));
             jList1.setModel(def);
@@ -75,7 +76,7 @@ public class AddTeachers extends javax.swing.JFrame {
         String id = jTextField1.getText();
         try {
             stt.execute("delete from teachers where id ='"+id+"';");
-        } catch(Exception e) {
+        } catch(SQLException e) {
             int n = JOptionPane.showConfirmDialog(new JFrame(),"This teacher has association with some subject.\nAre you sure to delete?","Caution",JOptionPane.YES_NO_OPTION);
             if(n == JOptionPane.OK_OPTION) {
                 try {
