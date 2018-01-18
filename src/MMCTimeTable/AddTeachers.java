@@ -96,32 +96,6 @@ public class AddTeachers extends javax.swing.JFrame {
         }
     }
 
-    public void actionPerformed(ActionEvent e) {
-     if("back".equals(e.getActionCommand())) {
-            this.setVisible(false);
-            new BasicForm().setVisible(true);
-        }
-        else if("insert".equals(e.getActionCommand())) {
-            try {
-                stt.execute("select * from teachers where id = '"+jTextField1.getText().toString()+"';");
-                ResultSet rst = stt.getResultSet();
-                if(rst.next())
-                    stt.execute("update teachers set name = '"+jTextField2.getText().toString()+"' where id = '"+jTextField1.getText().toString()+"';");
-                else {
-                    delTea();
-                    insTea();
-                }
-            }
-            catch (Exception ex) {
-                ex.printStackTrace();
-            }
-            this.showList();
-        }   
-        else if("delete".equals(e.getActionCommand())) {
-            delTea();
-            this.showList();
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -157,6 +131,11 @@ public class AddTeachers extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 0, 153)));
 
         jButton4.setText("Save");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Id");
 
@@ -271,8 +250,27 @@ public class AddTeachers extends javax.swing.JFrame {
 
     private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
         // TODO add your handling code here:
-        
+      delTea();
+            this.showList();
     }//GEN-LAST:event_removeActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        try {
+                stt.execute("select * from teachers where id = '"+jTextField1.getText().toString()+"';");
+                ResultSet rst = stt.getResultSet();
+                if(rst.next())
+                    stt.execute("update teachers set name = '"+jTextField2.getText().toString()+"' where id = '"+jTextField1.getText().toString()+"';");
+                else {
+                    delTea();
+                    insTea();
+                }
+            }
+            catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            this.showList();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
