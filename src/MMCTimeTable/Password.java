@@ -129,7 +129,7 @@ Connection con;
         buttonText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buttonText.setForeground(new java.awt.Color(254, 254, 254));
         buttonText.setText("RESET");
-        resetButton.add(buttonText, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
+        resetButton.add(buttonText, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 70, 20));
 
         jPanel1.add(resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 80, 40));
 
