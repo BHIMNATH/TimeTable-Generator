@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
 public class AddTeachers extends javax.swing.JFrame {
     Statement stt;
     DefaultListModel def;
+    ResultSet rst;
     /**
      * Creates new form AddTeachers
      */
@@ -44,7 +45,7 @@ public class AddTeachers extends javax.swing.JFrame {
             stt.execute("USE time");
             def = new DefaultListModel();
             stt.execute("select id from teachers");
-            ResultSet rst = stt.getResultSet();
+            rst = stt.getResultSet();
             while(rst.next())
                 def.addElement(rst.getString(1));
             jList1.setModel(def);
@@ -60,7 +61,7 @@ public class AddTeachers extends javax.swing.JFrame {
     private void showList() {
         try {
             stt.execute("select id from teachers");
-            ResultSet rst = stt.getResultSet();
+            rst = stt.getResultSet();
             while(rst.next())
                 def.addElement(rst.getString(1));
             jList1.setModel(def);
@@ -258,7 +259,7 @@ public class AddTeachers extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
                 stt.execute("select * from teachers where id = '"+jTextField1.getText().toString()+"';");
-                ResultSet rst = stt.getResultSet();
+                 rst = stt.getResultSet();
                 if(rst.next())
                     stt.execute("update teachers set name = '"+jTextField2.getText().toString()+"' where id = '"+jTextField1.getText().toString()+"';");
                 else {
