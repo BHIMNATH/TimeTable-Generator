@@ -166,7 +166,7 @@ public class BasicForm extends javax.swing.JFrame {
         buttonText3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         buttonText3.setForeground(new java.awt.Color(254, 254, 254));
         buttonText3.setText("Add Teachers");
-        teachButton1.add(buttonText3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 150, 20));
+        teachButton1.add(buttonText3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 150, 20));
 
         jPanel1.add(teachButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, -1, 40));
 

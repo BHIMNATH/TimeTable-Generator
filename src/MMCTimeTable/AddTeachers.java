@@ -33,7 +33,7 @@ public class AddTeachers extends javax.swing.JFrame {
         String url = "jdbc:mysql://localhost:3306/";
         String user = "root";
 
-        String password = "root";
+        String password = "root"; // Database password
 
         try
         {
@@ -44,7 +44,7 @@ public class AddTeachers extends javax.swing.JFrame {
 
             stt.execute("USE time");
             def = new DefaultListModel();
-            stt.execute("select id from teachers");
+            stt.execute("select id from teachers"); // teachers - name of the table
             rst = stt.getResultSet();
             while(rst.next())
                 def.addElement(rst.getString(1));
