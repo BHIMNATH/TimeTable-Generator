@@ -303,7 +303,13 @@ public class BasicForm extends javax.swing.JFrame {
 
     private void teachButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teachButton1MousePressed
         // TODO add your handling code here:
-        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new AddTeachers().setVisible(true);                
+            }
+        });
+        this.setVisible(false);
     }//GEN-LAST:event_teachButton1MousePressed
 
 
