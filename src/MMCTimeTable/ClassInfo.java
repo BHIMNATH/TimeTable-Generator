@@ -9,6 +9,7 @@ package MMCTimeTable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import javax.swing.DefaultComboBoxModel;
 
 public class ClassInfo extends javax.swing.JFrame {
 
@@ -26,6 +27,9 @@ public class ClassInfo extends javax.swing.JFrame {
 
         String password = "root";
 
+        String[] items = {"Item A", "Item B", "Item C"};
+        new DefaultComboBoxModel(items);
+    
         try
         {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -71,15 +75,14 @@ public class ClassInfo extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         subjectName = new javax.swing.JTextField();
-        teacherName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         hours = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        teacherName = new javax.swing.JComboBox<>();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -167,7 +170,6 @@ public class ClassInfo extends javax.swing.JFrame {
         jLabel2.setText("Subject");
         jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 79, -1));
         jPanel5.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 240, 10));
-        jPanel5.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 240, 10));
         jPanel5.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 240, 8));
 
         subjectName.setBackground(new java.awt.Color(36, 47, 65));
@@ -175,17 +177,6 @@ public class ClassInfo extends javax.swing.JFrame {
         subjectName.setBorder(null);
         subjectName.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         jPanel5.add(subjectName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 240, 20));
-
-        teacherName.setBackground(new java.awt.Color(36, 47, 65));
-        teacherName.setForeground(new java.awt.Color(204, 204, 204));
-        teacherName.setBorder(null);
-        teacherName.setDisabledTextColor(new java.awt.Color(204, 204, 204));
-        teacherName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                teacherNameActionPerformed(evt);
-            }
-        });
-        jPanel5.add(teacherName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 240, 20));
 
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("SUBJECT NAME");
@@ -220,14 +211,13 @@ public class ClassInfo extends javax.swing.JFrame {
         });
         jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 80, 30));
 
+        teacherName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel5.add(teacherName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 250, -1));
+
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 440, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void teacherNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_teacherNameActionPerformed
 
     private void hoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hoursActionPerformed
         // TODO add your handling code here:
@@ -326,7 +316,6 @@ public class ClassInfo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
@@ -336,6 +325,6 @@ public class ClassInfo extends javax.swing.JFrame {
     private javax.swing.JLabel labelClass;
     private javax.swing.JLabel labelSubjects;
     private javax.swing.JTextField subjectName;
-    private javax.swing.JTextField teacherName;
+    private javax.swing.JComboBox<String> teacherName;
     // End of variables declaration//GEN-END:variables
 }
