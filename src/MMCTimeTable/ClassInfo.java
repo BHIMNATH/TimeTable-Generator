@@ -9,7 +9,6 @@ package MMCTimeTable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
-import javax.swing.DefaultComboBoxModel;
 
 public class ClassInfo extends javax.swing.JFrame {
 
@@ -26,10 +25,7 @@ public class ClassInfo extends javax.swing.JFrame {
         String user = "root";
 
         String password = "root";
-
-        String[] items = {"Item A", "Item B", "Item C"};
-        new DefaultComboBoxModel(items);
-    
+        
         try
         {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -44,13 +40,18 @@ public class ClassInfo extends javax.swing.JFrame {
         {
             e.printStackTrace();
         }
+        reformatComboBox();
     }
     public ClassInfo(Environment e) {
         initComponents();
         i = j = 0;
         this.e = e;
     }
-
+private void reformatComboBox() {
+        teachersName.removeAllItems();
+        teachersName.addItem("Sabu");
+        teachersName.addItem("Thomas");
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,7 +83,7 @@ public class ClassInfo extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         hours = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        teacherName = new javax.swing.JComboBox<>();
+        teachersName = new javax.swing.JComboBox<>();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -211,8 +212,8 @@ public class ClassInfo extends javax.swing.JFrame {
         });
         jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 80, 30));
 
-        teacherName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel5.add(teacherName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 250, -1));
+        teachersName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel5.add(teachersName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 250, -1));
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 440, 470));
 
@@ -228,14 +229,14 @@ public class ClassInfo extends javax.swing.JFrame {
         {
             //jButton1.setText("NEXT");
             c = new Classes(className.getText(),Integer.parseInt(NumberOfSubjects.getText()));
-            e.checkForT(teacherName.getText(),subjectName.getText());
-            c.addSubject(j,subjectName.getText(),teacherName.getText(),Integer.parseInt(hours.getText()));
+            e.checkForT(teachersName.getText(),subjectName.getText());
+            c.addSubject(j,subjectName.getText(),teachersName.getText(),Integer.parseInt(hours.getText()));
             j++;
         }
         else
         {
-            e.checkForT(teacherName.getText(),subjectName.getText());
-            c.addSubject(j,subjectName.getText(),teacherName.getText(),Integer.parseInt(hours.getText()));
+            e.checkForT(teachersName.getText(),subjectName.getText());
+            c.addSubject(j,subjectName.getText(),teachersName.getText(),Integer.parseInt(hours.getText()));
             j++;
             /*if(j == c.getNoOfSub()-2)
                 jButton1.setText("SUBMIT");*/
@@ -258,7 +259,7 @@ public class ClassInfo extends javax.swing.JFrame {
             }
             //jButton1.setText("NEXT");
         }
-        teacherName.setText("");
+        teachersName.setText("");
         subjectName.setText("");
         hours.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -325,6 +326,6 @@ public class ClassInfo extends javax.swing.JFrame {
     private javax.swing.JLabel labelClass;
     private javax.swing.JLabel labelSubjects;
     private javax.swing.JTextField subjectName;
-    private javax.swing.JComboBox<String> teacherName;
+    private javax.swing.JComboBox<String> teachersName;
     // End of variables declaration//GEN-END:variables
 }
