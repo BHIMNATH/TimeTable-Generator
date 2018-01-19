@@ -270,7 +270,7 @@ private void reformatComboBox() {
             }
             //jButton1.setText("NEXT");
         }
-        teachersName.setText("");
+        //teachersName.setText("");
         subjectName.setText("");
         hours.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
