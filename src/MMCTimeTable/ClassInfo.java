@@ -8,6 +8,7 @@ package MMCTimeTable;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class ClassInfo extends javax.swing.JFrame {
@@ -18,6 +19,7 @@ public class ClassInfo extends javax.swing.JFrame {
     Environment e;
     private int i,j;
     private Classes c = null;
+    Statement stt;
     public ClassInfo() {
         initComponents();
         
@@ -31,7 +33,7 @@ public class ClassInfo extends javax.swing.JFrame {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Connection con = DriverManager.getConnection(url, user, password);
 
-            Statement stt = con.createStatement();
+             stt = con.createStatement();
 
             stt.execute("USE time");
 
@@ -48,9 +50,18 @@ public class ClassInfo extends javax.swing.JFrame {
         this.e = e;
     }
 private void reformatComboBox() {
-        teachersName.removeAllItems();
-        teachersName.addItem("Sabu");
-        teachersName.addItem("Thomas");
+            teachersName.removeAllItems();
+                try{
+                    ResultSet rst = stt.getResultSet();
+                    while(i<2){
+                        stt.execute("select * from teachers where id ='"+i+"';");
+                        rst.next();
+                        teachersName.addItem(rst.getString(i));
+                        i++;
+                    }
+                } catch(Exception e) {
+                    System.err.println(e);
+                }
 }
     /**
      * This method is called from within the constructor to initialize the form.
