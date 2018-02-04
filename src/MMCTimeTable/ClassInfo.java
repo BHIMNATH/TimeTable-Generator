@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.DefaultListModel;
 
 public class ClassInfo extends javax.swing.JFrame {
 
@@ -20,6 +21,8 @@ public class ClassInfo extends javax.swing.JFrame {
     private int i,j;
     private Classes c = null;
     Statement stt;
+    DefaultListModel def;
+    ResultSet rst;
     public ClassInfo() {
         initComponents();
         
@@ -36,6 +39,11 @@ public class ClassInfo extends javax.swing.JFrame {
              stt = con.createStatement();
 
             stt.execute("USE time");
+            def = new DefaultListModel();
+            stt.execute("select id from teachers"); // teachers - name of the table
+            rst = stt.getResultSet();
+            while(rst.next())
+                def.addElement(rst.getString(1));
 
         }
         catch (Exception e)
